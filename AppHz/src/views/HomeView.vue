@@ -4,12 +4,12 @@
 
 <template>
   <div class="main">
-    <h3>Main app</h3>
+    <h4>I'm</h4>
     <ul>
-      <li>a</li>
-      <li>b</li>
-      <li>c</li>
+      <li>xx years old</li>
+      <li>Immunosuppressed</li>
     </ul>
+<!--    report items-->
   </div>
 </template>
 

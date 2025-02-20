@@ -16,7 +16,7 @@ import { RouterLink, RouterView } from 'vue-router'
             <RouterLink to="/" class="nav-link active">Home</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink to="/about" class="nav-link active">About</RouterLink>
+            <RouterLink to="/about" class="nav-link active">Dictionary</RouterLink>
           </li>
         </ul>
       </div>
@@ -35,5 +35,6 @@ import { RouterLink, RouterView } from 'vue-router'
 <style scoped>
 #main {
   float: none;
+  max-width: 1440pt;
 }
 </style>
