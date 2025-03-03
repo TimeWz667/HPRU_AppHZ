@@ -20,17 +20,20 @@ export default {
   },
   methods: {
     select_scenario(age0, two_dose) {
-      let sel = this.sims_uv_ys.filter((d) => d.Age0 === age0);
-
+      console.log(age0, two_dose);
+      //let sel = this.sims_uv_ys.filter((d) => d.Age0 === age0);
+      console.log(this.sims_uv_ys.filter((d) => d.Age0 >= age0).filter(d => d.Arm === "SOC")[0])
       this.sel_ys = {
-        'NoVac': sel.filter(d => d.Arm === "SOC")[0],
-        'Vac': sel.filter(d => d.Arm === ((two_dose)?"RZV_2d":"RZV_1d"))[0],
+        'NoVac': this.sims_uv_ys.filter((d) => d.Age0 >= age0).filter(d => d.Arm === "SOC")[0],
+        'Vac': this.sims_uv_ys.filter((d) => d.Age0 >= age0).filter(d => d.Arm === ((two_dose)?"RZV_2d":"RZV_1d"))[0],
       };
 
       this.sel_ce =  this.sims_uv_ce
-        .filter((d) => d.Age0 === age0)
+        .filter((d) => d.Age0 >= age0)
         .filter(d => d.Arm === ((two_dose)?"RZV_2d":"RZV_1d"))[0];
 
+      // console.log(this.sel_ce);
+      // console.log(this.sel_ys)
       this.stats = ["Year_Life", "Year_Immunised", "Risk_HZ", "Risk_PHN",
         "C_Med_d", "C_Hosp_d", "C_GP_d", "Q_HZ_d", "Q_Life_d"].map(k => {
         return {
@@ -40,8 +43,6 @@ export default {
           dY: this.sel_ce["d" + k]
         }
       })
-
-
     },
   },
   watch: {
