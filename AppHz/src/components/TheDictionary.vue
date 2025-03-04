@@ -6,7 +6,7 @@ import DictionaryItem from './DictionaryItem.vue'
 <template>
   <DictionaryItem>
     <template #heading>Shingles</template>
-    Shingles is a disease cuased by ...
+    Shingles is a disease caused by ...
   </DictionaryItem>
   <DictionaryItem>
     <template #heading>Quality-adjusted life year, QALY</template>
