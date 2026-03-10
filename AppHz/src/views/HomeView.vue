@@ -30,9 +30,11 @@ export default {
         {Key: "Year_Immunised", Desc: "Expected life year with vaccine-induced immunity", direction: "+", upper: 40, fmt: (d) => d.toFixed(2)},
         {Key: "Risk_HZ", Desc: "Life-time risk of HZ", direction: "+", upper: 0.3, fmt: (d) => (d * 100).toFixed(2) + "%"},
         {Key: "Risk_PHN", Desc: "Life-time risk of PHN", direction: "+", upper: 0.1, fmt: (d) => (d * 100).toFixed(2) + "%"},
-        {Key: "C_Hosp_d", Desc: "Medical cost, hospitalisation", direction: "+", upper: 30, fmt: (d) => gbp.format(d.toFixed(2))},
-        {Key: "C_GP_d", Desc: "Medical cost, primary care", direction: "+", upper: 30, fmt: (d) => gbp.format(d.toFixed(2))},
+        //{Key: "C_Hosp_d", Desc: "Medical cost, hospitalisation", direction: "+", upper: 30, fmt: (d) => gbp.format(d.toFixed(2))},
+        //{Key: "C_GP_d", Desc: "Medical cost, primary care", direction: "+", upper: 30, fmt: (d) => gbp.format(d.toFixed(2))},
         {Key: "Q_HZ_d", Desc: "QALY loss due to HZ", direction: "-", upper: -0.1, fmt: (d) => d.toFixed(2)},
+        {Key: "NNV_HZ", Desc: "NNV for a HZ", direction: "+", upper: 100, fmt: (d) => d.toFixed(1)},
+        {Key: "NNV_PHN", Desc: "NNV for a PHN", direction: "+", upper: 1000, fmt: (d) => d.toFixed(1)},
       ]
     }
   },
@@ -52,15 +54,37 @@ export default {
 
       this.stats = this.stats_def.map(d => {
         const k = d.Key;
-        return {
-          Key: k,
-          Desc: d.Desc,
-          Direction: d.direction,
-          Y0: this.sel_ys.NoVac[k],
-          Y1: this.sel_ys.Vac[k],
-          dY: this.sel_ce["d" + k],
-          upper: d.upper,
-          fmt: d.fmt
+
+        if (k.startsWith("NNV_")) {
+          let nnv;
+
+          if (k === "NNV_HZ") {
+            nnv = 1 / (this.sel_ys.NoVac["Risk_HZ"] - this.sel_ys.Vac["Risk_HZ"]);
+          } else {
+            nnv = 1 / (this.sel_ys.NoVac["Risk_PHN"] - this.sel_ys.Vac["Risk_PHN"]);
+          }
+
+          return {
+            Key: k,
+            Desc: d.Desc,
+            Direction: d.direction,
+            Y0: 0,
+            Y1: nnv,
+            dY: 0,
+            upper: d.upper,
+            fmt: d.fmt
+          }
+        } else {
+          return {
+            Key: k,
+            Desc: d.Desc,
+            Direction: d.direction,
+            Y0: this.sel_ys.NoVac[k],
+            Y1: this.sel_ys.Vac[k],
+            dY: this.sel_ce["d" + k],
+            upper: d.upper,
+            fmt: d.fmt
+          }
         }
       });
     },

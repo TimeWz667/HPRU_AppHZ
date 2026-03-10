@@ -12,9 +12,9 @@ import DictionaryItem from './DictionaryItem.vue'
     <template #heading>Quality-adjusted life year, QALY</template>
     Quality of life.
   </DictionaryItem>
-  <DictionaryItem>
-    <template #heading>Threshold price</template>
+<!--  <DictionaryItem>-->
+<!--    <template #heading>Threshold price</template>-->
 
-  </DictionaryItem>
+<!--  </DictionaryItem>-->
 
 </template>
