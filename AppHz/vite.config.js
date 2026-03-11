@@ -16,4 +16,5 @@ export default defineConfig({
       '~bootstrap': fileURLToPath(new URL('./node_modules/bootstrap', import.meta.url)),
     },
   },
+  base: '/HPRU_AppHZ/'
 })
