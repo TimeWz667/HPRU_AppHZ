@@ -1,8 +1,12 @@
 <script>
-import sims_uv_ce from '@/assets/data/tab_uv_15_rw_stats_ce.json'
+/*import sims_uv_ce from '@/assets/data/tab_uv_15_rw_stats_ce.json'
 import sims_re_ce from '@/assets/data/tab_re_15_rw_stats_ce.json'
 import sims_uv_ys from '@/assets/data/tab_uv_15_rw_stats_ys.json'
-import sims_re_ys from '@/assets/data/tab_re_15_rw_stats_ys.json'
+import sims_re_ys from '@/assets/data/tab_re_15_rw_stats_ys.json'*/
+import sims_uv_ce from '@/assets/data/stats_ce_uv_rw_35.json'
+import sims_re_ce from '@/assets/data/stats_ce_re_rw_35.json'
+import sims_uv_ys from '@/assets/data/stats_ys_uv_rw_35.json'
+import sims_re_ys from '@/assets/data/stats_ys_re_rw_35.json'
 import StatsBars from '@/components/StatsBars.vue'
 
 
